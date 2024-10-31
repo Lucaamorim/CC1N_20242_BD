@@ -23,6 +23,55 @@ CREATE TABLE Produto (
     ponto_ressuprimento INT
 );
 
+-- Criar Index
+CREATE INDEX idx_nome_produto 
+ON Produto (nome_produto);
+
+-- Criar View
+CREATE VIEW vista_produto AS
+SELECT nome_produto, descricao
+FROM Produto;
+
+-- Comando Alter ADD
+ALTER TABLE Produto ADD email VARCHAR(100);
+
+-- Comando Alter DROP COLUMN
+ALTER TABLE Produto DROP COLUMN email;
+
+-- Comando Alter MODIFY COLUMN 
+ALTER TABLE Produto MODIFY COLUMN email VARCHAR(150);
+
+-- Comando Alter CHANGE COLUMN
+ALTER TABLE Produto CHANGE COLUMN email email_completo VARCHAR(150);
+
+-- Comando Alter ADD INDEX
+ALTER TABLE Produto ADD INDEX idx_email (email_completo);
+
+-- Remover Banco de Dados:
+DROP DATABASE cadeia_de_suprimentos;
+
+-- Remover Tabela:
+DROP TABLE Produto;
+
+-- Remover Índice:
+DROP INDEX idx_email ON Produto;
+
+-- Remover Visão:
+DROP VIEW vista_produto;
+
+-- Remover dados
+TRUNCATE TABLE Produto;
+
+-- Alterar nome da tabela
+RENAME TABLE Produto TO Produto;
+
+-- Comentarios nas tabelas
+ALTER TABLE Produto COMMENT = 'Tabela de informações dos Produtos';
+
+-- Adicionar Comentário a Coluna:
+ALTER TABLE Produto MODIFY email_completo VARCHAR(150) COMMENT 'email do contato que representa o produto';
+
+
 CREATE TABLE PedidoCompra (
     id_pedido INT AUTO_INCREMENT PRIMARY KEY,
     data_pedido DATE NOT NULL,
@@ -32,6 +81,55 @@ CREATE TABLE PedidoCompra (
     FOREIGN KEY (id_fornecedor) REFERENCES Fornecedor(id_fornecedor)
 );
 
+-- Criar Index
+CREATE INDEX idx_data_pedido 
+ON PedidoCompra (data_pedido);
+
+-- Criar View
+CREATE VIEW vista_pedido_compra AS
+SELECT id_pedido, data_pedido, status
+FROM PedidoCompra;
+
+-- Comando Alter ADD
+ALTER TABLE PedidoCompra ADD email VARCHAR(100);
+
+-- Comando Alter DROP COLUMN
+ALTER TABLE PedidoCompra DROP COLUMN email;
+
+-- Comando Alter MODIFY COLUMN 
+ALTER TABLE PedidoCompra MODIFY COLUMN email VARCHAR(150);
+
+-- Comando Alter CHANGE COLUMN
+ALTER TABLE PedidoCompra CHANGE COLUMN email email_completo VARCHAR(150);
+
+-- Comando Alter ADD INDEX
+ALTER TABLE PedidoCompra ADD INDEX idx_email (email_completo);
+
+-- Remover Banco de Dados:
+DROP DATABASE cadeia_de_suprimentos;
+
+-- Remover Tabela:
+DROP TABLE PedidoCompra;
+
+-- Remover Índice:
+DROP INDEX idx_email ON PedidoCompra;
+
+-- Remover Visão:
+DROP VIEW vista_pedido_compra;
+
+-- Remover dados
+TRUNCATE TABLE PedidoCompra;
+
+-- Alterar nome da tabela
+RENAME TABLE PedidoCompra TO PedidoCompra;
+
+-- Comentarios nas tabelas
+ALTER TABLE PedidoCompra COMMENT = 'Tabela de informações dos Pedidos de Compra';
+
+-- Adicionar Comentário a Coluna:
+ALTER TABLE PedidoCompra MODIFY email_completo VARCHAR(150) COMMENT 'email do contato que representa o pedido de compra';
+
+
 CREATE TABLE Produto_Pedido (
     id_pedido INT,
     id_produto INT,
@@ -40,6 +138,54 @@ CREATE TABLE Produto_Pedido (
     FOREIGN KEY (id_pedido) REFERENCES PedidoCompra(id_pedido),
     FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
 );
+
+-- Criar Index
+CREATE INDEX idx_id_produto 
+ON Produto_Pedido (id_produto);
+
+-- Criar View
+CREATE VIEW vista_produto_pedido AS
+SELECT id_pedido, id_produto, quantidade_solicitada
+FROM Produto_Pedido;
+
+-- Comando Alter ADD
+ALTER TABLE Produto_Pedido ADD email VARCHAR(100);
+
+-- Comando Alter DROP COLUMN
+ALTER TABLE Produto_Pedido DROP COLUMN email;
+
+-- Comando Alter MODIFY COLUMN 
+ALTER TABLE Produto_Pedido MODIFY COLUMN email VARCHAR(150);
+
+-- Comando Alter CHANGE COLUMN
+ALTER TABLE Produto_Pedido CHANGE COLUMN email email_completo VARCHAR(150);
+
+-- Comando Alter ADD INDEX
+ALTER TABLE Produto_Pedido ADD INDEX idx_email (email_completo);
+
+-- Remover Banco de Dados:
+DROP DATABASE cadeia_de_suprimentos;
+
+-- Remover Tabela:
+DROP TABLE Produto_Pedido;
+
+-- Remover Índice:
+DROP INDEX idx_email ON Produto_Pedido;
+
+-- Remover Visão:
+DROP VIEW vista_produto_pedido;
+
+-- Remover dados
+TRUNCATE TABLE Produto_Pedido;
+
+-- Alterar nome da tabela
+RENAME TABLE Produto_Pedido TO Produto_Pedido;
+
+-- Comentarios nas tabelas
+ALTER TABLE Produto_Pedido COMMENT = 'Tabela de informações dos Produtos em cada Pedido';
+
+-- Adicionar Comentário a Coluna:
+ALTER TABLE Produto_Pedido MODIFY email_completo VARCHAR(150) COMMENT 'email do contato que representa o produto no pedido';
 
 CREATE TABLE Recebimento (
     id_recebimento INT AUTO_INCREMENT PRIMARY KEY,
