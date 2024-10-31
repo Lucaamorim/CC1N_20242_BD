@@ -10,6 +10,46 @@ CREATE TABLE Fornecedor (
     telefone VARCHAR(50)
 );
 
+-- Comandos DDL Fornecedor
+
+-- Criar Index
+CREATE INDEX idx_nome_empresa 
+ON Fornecedor (nome_empresa);
+
+-- Criar View
+CREATE VIEW vista_fornecedore AS
+SELECT nome_empresa, endereco_empresa
+FROM Fornecedor;
+
+-- Comando Alter ADD
+ALTER TABLE Fornecedores ADD email VARCHAR(100);
+-- Comando Alter DROP COLUMUN
+ALTER TABLE Fornecedores DROP COLUMN email;
+-- Comando Alter MODIFY COLUMN 
+ALTER TABLE Fornecedores MODIFY COLUMN email VARCHAR(150);
+-- Comando Alter CHANGE COLUMN
+ALTER TABLE Fornecedores CHANGE COLUMN email email_completo VARCHAR(150);
+-- Comando Alter ADD INDEX
+ALTER TABLE Fornecedores ADD INDEX idx_email (email_completo);
+-- Remover Tabela:
+DROP TABLE Fornecedores;
+-- Remover Índice:
+DROP INDEX idx_email ON Fornecedores;
+-- Remover Visão:
+DROP VIEW vista_fornecedore;
+
+-- Remover dados
+TRUNCATE TABLE Fornecedores;
+
+-- Alterar nome da tabela
+RENAME TABLE Fornecedores TO Fornecedor;
+
+-- Comentarios nas tabelas
+ALTER TABLE Fornecedores COMMENT = 'Tabela de informações dos Fornecedores';
+
+-- Adicionar Comentário a Coluna:
+ALTER TABLE Fornecedores MODIFY email_completo VARCHAR(150) COMMENT 'email do contato que representa o fornecedor';
+
 
 CREATE TABLE Produto (
     id_produto INT AUTO_INCREMENT PRIMARY KEY,
@@ -23,6 +63,7 @@ CREATE TABLE Produto (
     ponto_ressuprimento INT
 );
 
+-- Comandos DDL Produto
 -- Criar Index
 CREATE INDEX idx_nome_produto 
 ON Produto (nome_produto);
@@ -35,9 +76,6 @@ FROM Produto;
 -- Comando Alter ADD
 ALTER TABLE Produto ADD email VARCHAR(100);
 
--- Comando Alter DROP COLUMN
-ALTER TABLE Produto DROP COLUMN email;
-
 -- Comando Alter MODIFY COLUMN 
 ALTER TABLE Produto MODIFY COLUMN email VARCHAR(150);
 
@@ -46,9 +84,6 @@ ALTER TABLE Produto CHANGE COLUMN email email_completo VARCHAR(150);
 
 -- Comando Alter ADD INDEX
 ALTER TABLE Produto ADD INDEX idx_email (email_completo);
-
--- Remover Banco de Dados:
-DROP DATABASE cadeia_de_suprimentos;
 
 -- Remover Tabela:
 DROP TABLE Produto;
@@ -71,6 +106,8 @@ ALTER TABLE Produto COMMENT = 'Tabela de informações dos Produtos';
 -- Adicionar Comentário a Coluna:
 ALTER TABLE Produto MODIFY email_completo VARCHAR(150) COMMENT 'email do contato que representa o produto';
 
+-- Comando Alter DROP COLUMN
+ALTER TABLE Produto DROP COLUMN email;
 
 CREATE TABLE PedidoCompra (
     id_pedido INT AUTO_INCREMENT PRIMARY KEY,
@@ -93,9 +130,6 @@ FROM PedidoCompra;
 -- Comando Alter ADD
 ALTER TABLE PedidoCompra ADD email VARCHAR(100);
 
--- Comando Alter DROP COLUMN
-ALTER TABLE PedidoCompra DROP COLUMN email;
-
 -- Comando Alter MODIFY COLUMN 
 ALTER TABLE PedidoCompra MODIFY COLUMN email VARCHAR(150);
 
@@ -104,12 +138,6 @@ ALTER TABLE PedidoCompra CHANGE COLUMN email email_completo VARCHAR(150);
 
 -- Comando Alter ADD INDEX
 ALTER TABLE PedidoCompra ADD INDEX idx_email (email_completo);
-
--- Remover Banco de Dados:
-DROP DATABASE cadeia_de_suprimentos;
-
--- Remover Tabela:
-DROP TABLE PedidoCompra;
 
 -- Remover Índice:
 DROP INDEX idx_email ON PedidoCompra;
@@ -125,9 +153,6 @@ RENAME TABLE PedidoCompra TO PedidoCompra;
 
 -- Comentarios nas tabelas
 ALTER TABLE PedidoCompra COMMENT = 'Tabela de informações dos Pedidos de Compra';
-
--- Adicionar Comentário a Coluna:
-ALTER TABLE PedidoCompra MODIFY email_completo VARCHAR(150) COMMENT 'email do contato que representa o pedido de compra';
 
 
 CREATE TABLE Produto_Pedido (
@@ -257,3 +282,7 @@ ALTER TABLE Fornecedores COMMENT = 'Tabela de informações dos Fornecedores';
 
 --Adicionar Comentário a Coluna:
 ALTER TABLE Fornecedores MODIFY email_completo VARCHAR(150) COMMENT 'email do contato que representa o fornecedor';
+
+
+-- Remover Banco de Dados:
+DROP DATABASE cadeia_de_suprimentos;
